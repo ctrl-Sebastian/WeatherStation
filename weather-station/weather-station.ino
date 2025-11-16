@@ -25,7 +25,9 @@ void setup()
 	display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
 	display.clearDisplay();
 	display.setTextColor(SSD1306_WHITE);
+	display.setTextSize(2);
 	display.display();
+
 }
 
 void loop()
@@ -35,12 +37,13 @@ void loop()
 
 	temperature = dht.readTemperature();
 	humidity = dht.readHumidity();
-
+	display.setTextSize(2);
 	display.setCursor(0, 0);
-	display.setTextSize(3);
-	display.println("HI");
-	display.println(temperature);
-	display.println(humidity);
+	display.println("Weather");
+	display.setTextSize(1);
+	display.println((String)"temp: " + temperature);
+	display.println((String)"humid: " + humidity);
 	display.display();
 	delay(1000);
+	display.clearDisplay();
 }
